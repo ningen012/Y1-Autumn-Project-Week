@@ -63,29 +63,7 @@ void loop() {
   analogWrite(ENB, 120);
   delay(100);
     }
-/*
-    else if (inputvalue == 'C') {
-      digitalWrite(12, LOW);
-      digitalWrite(11, HIGH);
-      digitalWrite(10, HIGH);
-      digitalWrite(9, LOW);
-    }
 
-    else if (inputvalue == 'A') {
-      digitalWrite(12, HIGH);
-      digitalWrite(11, LOW);
-      digitalWrite(10, LOW);
-      digitalWrite(9, HIGH);
-    }
-
-    else if (inputvalue == 'O') {
-      digitalWrite(13, HIGH);
-    }
-
-    else if (inputvalue == 's') {
-      digitalWrite(13, LOW);
-    }
-*/
     else if (inputvalue == 'S') {//stop
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, LOW);
