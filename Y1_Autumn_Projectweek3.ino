@@ -160,23 +160,24 @@ void stop()
 
 void lineFollowing(){
   // Line-following logic
-  int RIGHT_SENSORrabiya = digitalRead(RIGHT_SENSOR);
-  int LEFT_SENSORningen = digitalRead(LEFT_SENSOR);
-  int leftSensorValue = analogRead(LEFT_SENSOR);
-  int rightSensorValue = analogRead(RIGHT_SENSOR);
+  int RIGHT_SENSORdigital = digitalRead(RIGHT_SENSOR);
+  int LEFT_SENSORdigital = digitalRead(LEFT_SENSOR);
+  
+  int LEFT_SENSORanalog = analogRead(LEFT_SENSOR);
+  int RIGHT_SENSORanalog = analogRead(RIGHT_SENSOR);
 
 
-  if (abs(leftSensorValue - rightSensorValue) < 50) { // Ignore minor deviations
+  if (abs(LEFT_SENSORanalog - RIGHT_SENSORanalog) < 50) { // Ignore minor deviations
     forward();
   }
 
-  if (RIGHT_SENSORrabiya == HIGH && LEFT_SENSORningen == HIGH) {
+  if (RIGHT_SENSORdigital == HIGH && LEFT_SENSORdigital == HIGH) {
     forward();
-  } else if (RIGHT_SENSORrabiya == LOW && LEFT_SENSORningen == HIGH) {
+  } else if (RIGHT_SENSORdigital == LOW && LEFT_SENSORdigital == HIGH) {
     right();
-  } else if (RIGHT_SENSORrabiya == HIGH && LEFT_SENSORningen == LOW) {
+  } else if (RIGHT_SENSORdigital == HIGH && LEFT_SENSORdigital == LOW) {
     left();
-  } else if (RIGHT_SENSORrabiya == LOW && LEFT_SENSORningen == LOW) {
+  } else if (RIGHT_SENSORdigital == LOW && LEFT_SENSORdigital == LOW) {
     stop();
     isRunning = false;
   }
