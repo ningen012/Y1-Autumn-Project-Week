@@ -130,7 +130,7 @@ void right()
 {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, HIGH);
-  digitalWrite(IN3, LOW);//Or right tyre turn anticlockwise
+  digitalWrite(IN3, LOW);//right tyre turn anticlockwise
   digitalWrite(IN4, HIGH);
 
   analogWrite(ENA, 120);
@@ -159,13 +159,14 @@ void stop()
 }
 
 void lineFollowing(){
-  // Line-following logic
   int RIGHT_SENSORdigital = digitalRead(RIGHT_SENSOR);
   int LEFT_SENSORdigital = digitalRead(LEFT_SENSOR);
-  
   int LEFT_SENSORanalog = analogRead(LEFT_SENSOR);
   int RIGHT_SENSORanalog = analogRead(RIGHT_SENSOR);
-
+  Serial.print("Right Digital: "); Serial.print(RIGHT_SENSORdigital);
+  Serial.print(", Left Digital: "); Serial.println(LEFT_SENSORdigital);
+  Serial.print("Right Analog: "); Serial.print(RIGHT_SENSORanalog);
+  Serial.print(", Left Analog: "); Serial.println(LEFT_SENSORanalog);
 
   if (abs(LEFT_SENSORanalog - RIGHT_SENSORanalog) < 50) { // Ignore minor deviations
     forward();
@@ -326,7 +327,7 @@ void loop() {
     float accumulatedYaw = 0.0;
     unsigned long prevTime = millis();
 
-    while (fabs(accumulatedYaw) < 350.0) {
+    while (fabs(accumulatedYaw) < 360.0) {
       right();
       analogWrite(ENA, 100);
       analogWrite(ENB, 100);
@@ -337,7 +338,9 @@ void loop() {
       prevTime = currentTime;
       accumulatedYaw += g.gyro.z * 180.0 / PI * deltaTime;
     }
+    
     rotated = true;
+  
   } else if (!descendingRamp) {
     forward();
     analogWrite(ENA, 60); // Normal speed
