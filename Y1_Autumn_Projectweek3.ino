@@ -161,16 +161,10 @@ void stop()
 void lineFollowing(){
   int RIGHT_SENSORdigital = digitalRead(RIGHT_SENSOR);
   int LEFT_SENSORdigital = digitalRead(LEFT_SENSOR);
-  int LEFT_SENSORanalog = analogRead(LEFT_SENSOR);
-  int RIGHT_SENSORanalog = analogRead(RIGHT_SENSOR);
+  
   Serial.print("Right Digital: "); Serial.print(RIGHT_SENSORdigital);
   Serial.print(", Left Digital: "); Serial.println(LEFT_SENSORdigital);
-  Serial.print("Right Analog: "); Serial.print(RIGHT_SENSORanalog);
-  Serial.print(", Left Analog: "); Serial.println(LEFT_SENSORanalog);
-
-  if (abs(LEFT_SENSORanalog - RIGHT_SENSORanalog) < 50) { // Ignore minor deviations
-    forward();
-  }
+ 
 
   if (RIGHT_SENSORdigital == HIGH && LEFT_SENSORdigital == HIGH) {
     forward();
